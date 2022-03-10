@@ -280,6 +280,9 @@ list(GET VERSION_LIST 1 LIBFTDI_VERSION_MINOR)
 math(EXPR FTDI_VAL "${LIBFTDI_VERSION_MAJOR} * 100 + ${LIBFTDI_VERSION_MINOR}")
 
 add_definitions(-DFTDI_VERSION=${FTDI_VAL})
+include_directories(${ZLIB_INCLUDE_DIRS})
+target_link_libraries(openFPGALoader ${ZLIB_LIBRARIES})
+add_definitions(-DHAS_ZLIB=1)
 
 install(TARGETS openFPGALoader DESTINATION bin)
 file(GLOB BITS_FILES spiOverJtag/spiOverJtag_*.bit)
